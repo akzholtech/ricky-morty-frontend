@@ -6,13 +6,14 @@ import {
   AiChatResponse,
   AiCharacterDescriptionResponse,
 } from '../models/ai.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AiService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://127.0.0.1:8000/api/ai';
+  private readonly apiUrl = `${environment.apiUrl}/api/ai`;
 
   chat(request: AiChatRequest): Observable<AiChatResponse> {
     return this.http.post<AiChatResponse>(`${this.apiUrl}/chat`, request).pipe(

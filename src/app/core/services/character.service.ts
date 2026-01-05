@@ -2,13 +2,14 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
 import { ApiResponse, Character, CharacterFilter } from '../models/character.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CharacterService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://127.0.0.1:8000/api/characters';
+  private readonly apiUrl = `${environment.apiUrl}/api/characters`;
 
   getCharacters(filter?: CharacterFilter): Observable<ApiResponse<Character>> {
     let params = new HttpParams();
